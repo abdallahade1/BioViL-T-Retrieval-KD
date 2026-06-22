@@ -1,0 +1,31 @@
+# Large binary artifacts — never commit these
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.pkl
+*.h5
+*.safetensors
+*.bin
+
+# Data
+data/
+mimic-cxr/
+*.csv.gz
+
+# Notebook / Python cruft
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
