@@ -40,7 +40,7 @@ fraction of the cost.
 <p align="center">
   <img src="docs/architecture.png" alt="Two-stage distillation framework" width="430"/>
 </p>
-<p align="center"><em>Figure 1: The proposed two-stage distillation framework (as in the paper).</em></p>
+<p align="center"><em>Figure 1: The proposed two-stage distillation framework.</em></p>
 
 ---
 
