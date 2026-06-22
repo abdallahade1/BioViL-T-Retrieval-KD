@@ -33,8 +33,8 @@
 Large biomedical vision–language models such as **BioViL-T** achieve strong
 cross-modal alignment between chest radiographs and radiology reports, but their
 size makes them impractical to deploy on local or resource-constrained clinical
-hardware. We distil BioViL-T into **compact student encoder pairs** that preserve
-— and on whole-gallery retrieval, exceed — the teacher's retrieval ability at a
+hardware. We distil BioViL-T into **compact student encoder pairs** that preserve 
+and on whole gallery retrieval, exceed the teacher's retrieval ability at a
 fraction of the cost.
 
 <p align="center">
