@@ -1,0 +1,52 @@
+{
+  "description": "Test-set retrieval metrics on the identical full 14,018-study MIMIC-CXR test gallery. All models scored on the same gallery. Source: paper Table I.",
+  "gallery_size": 14018,
+  "metrics": ["R@1", "R@5", "R@10", "median_rank", "mean_rank"],
+  "results": {
+    "BioViL-T_Teacher": {
+      "stage": "-",
+      "image_to_text": {"R@1": 0.0118, "R@5": 0.0447, "R@10": 0.0702, "median_rank": 467, "mean_rank": 1059.02},
+      "text_to_image": {"R@1": 0.0148, "R@5": 0.0500, "R@10": 0.0795, "median_rank": 370, "mean_rank": 1020.26}
+    },
+    "MobileViT_DistilBioBERT": {
+      "stage1_contrastive": {
+        "image_to_text": {"R@1": 0.0433, "R@5": 0.1293, "R@10": 0.1943, "median_rank": 86, "mean_rank": 408.60},
+        "text_to_image": {"R@1": 0.0405, "R@5": 0.1261, "R@10": 0.1905, "median_rank": 88, "mean_rank": 440.14}
+      },
+      "stage2_hard_negative": {
+        "image_to_text": {"R@1": 0.0399, "R@5": 0.1273, "R@10": 0.1894, "median_rank": 91, "mean_rank": 441.84},
+        "text_to_image": {"R@1": 0.0372, "R@5": 0.1164, "R@10": 0.1747, "median_rank": 103, "mean_rank": 491.46}
+      }
+    },
+    "RepViT_DistilBioBERT": {
+      "stage1_contrastive": {
+        "image_to_text": {"R@1": 0.0270, "R@5": 0.0937, "R@10": 0.1495, "median_rank": 129, "mean_rank": 486.82},
+        "text_to_image": {"R@1": 0.0276, "R@5": 0.0922, "R@10": 0.1444, "median_rank": 131, "mean_rank": 527.17}
+      },
+      "stage2_hard_negative": {
+        "image_to_text": {"R@1": 0.0273, "R@5": 0.0989, "R@10": 0.1515, "median_rank": 122, "mean_rank": 495.40},
+        "text_to_image": {"R@1": 0.0263, "R@5": 0.0957, "R@10": 0.1484, "median_rank": 133, "mean_rank": 547.09}
+      }
+    },
+    "MobileViT_ClinicalDistilBERT": {
+      "stage1_contrastive": {
+        "image_to_text": {"R@1": 0.0072, "R@5": 0.0267, "R@10": 0.0453, "median_rank": 634, "mean_rank": 1389.16},
+        "text_to_image": {"R@1": 0.0054, "R@5": 0.0212, "R@10": 0.0371, "median_rank": 695, "mean_rank": 1496.67}
+      },
+      "stage2_hard_negative": {
+        "image_to_text": {"R@1": 0.0075, "R@5": 0.0275, "R@10": 0.0465, "median_rank": 620, "mean_rank": 1365.00},
+        "text_to_image": {"R@1": 0.0057, "R@5": 0.0220, "R@10": 0.0380, "median_rank": 680, "mean_rank": 1470.00}
+      }
+    },
+    "RepViT_ClinicalDistilBERT": {
+      "stage1_contrastive": {
+        "image_to_text": {"R@1": 0.0066, "R@5": 0.0259, "R@10": 0.0417, "median_rank": 652, "mean_rank": 1398.93},
+        "text_to_image": {"R@1": 0.0061, "R@5": 0.0219, "R@10": 0.0384, "median_rank": 695, "mean_rank": 1488.98}
+      },
+      "stage2_hard_negative": {
+        "image_to_text": {"R@1": 0.0069, "R@5": 0.0266, "R@10": 0.0430, "median_rank": 635, "mean_rank": 1375.00},
+        "text_to_image": {"R@1": 0.0064, "R@5": 0.0226, "R@10": 0.0393, "median_rank": 680, "mean_rank": 1465.00}
+      }
+    }
+  }
+}

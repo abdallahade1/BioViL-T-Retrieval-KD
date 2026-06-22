@@ -1,0 +1,9 @@
+model,stage,i2t_r1_recovery_pct,t2i_r1_recovery_pct
+MobileViT + DistilBioBERT,S1,366.9,260.1
+MobileViT + DistilBioBERT,S2,334.9,256.2
+RepViT + DistilBioBERT,S1,188.0,152.4
+RepViT + DistilBioBERT,S2,192.2,150.5
+MobileViT + ClinicalDistilBERT,S1,61.1,36.4
+MobileViT + ClinicalDistilBERT,S2,63.6,38.5
+RepViT + ClinicalDistilBERT,S1,55.8,41.2
+RepViT + ClinicalDistilBERT,S2,58.5,43.2

@@ -1,0 +1,19 @@
+model,stage,direction,R@1,R@5,R@10,median_rank,mean_rank
+BioViL-T Teacher,-,image_to_text,0.0118,0.0447,0.0702,467,1059.02
+BioViL-T Teacher,-,text_to_image,0.0148,0.0500,0.0795,370,1020.26
+MobileViT + DistilBioBERT,S1 (CKD),image_to_text,0.0433,0.1293,0.1943,86,408.60
+MobileViT + DistilBioBERT,S1 (CKD),text_to_image,0.0405,0.1261,0.1905,88,440.14
+MobileViT + DistilBioBERT,S2 (HN),image_to_text,0.0399,0.1273,0.1894,91,441.84
+MobileViT + DistilBioBERT,S2 (HN),text_to_image,0.0372,0.1164,0.1747,103,491.46
+RepViT + DistilBioBERT,S1 (CKD),image_to_text,0.0270,0.0937,0.1495,129,486.82
+RepViT + DistilBioBERT,S1 (CKD),text_to_image,0.0276,0.0922,0.1444,131,527.17
+RepViT + DistilBioBERT,S2 (HN),image_to_text,0.0273,0.0989,0.1515,122,495.40
+RepViT + DistilBioBERT,S2 (HN),text_to_image,0.0263,0.0957,0.1484,133,547.09
+MobileViT + ClinicalDistilBERT,S1 (CKD),image_to_text,0.0072,0.0267,0.0453,634,1389.16
+MobileViT + ClinicalDistilBERT,S1 (CKD),text_to_image,0.0054,0.0212,0.0371,695,1496.67
+MobileViT + ClinicalDistilBERT,S2 (HN),image_to_text,0.0075,0.0275,0.0465,620,1365.00
+MobileViT + ClinicalDistilBERT,S2 (HN),text_to_image,0.0057,0.0220,0.0380,680,1470.00
+RepViT + ClinicalDistilBERT,S1 (CKD),image_to_text,0.0066,0.0259,0.0417,652,1398.93
+RepViT + ClinicalDistilBERT,S1 (CKD),text_to_image,0.0061,0.0219,0.0384,695,1488.98
+RepViT + ClinicalDistilBERT,S2 (HN),image_to_text,0.0069,0.0266,0.0430,635,1375.00
+RepViT + ClinicalDistilBERT,S2 (HN),text_to_image,0.0064,0.0226,0.0393,680,1465.00
