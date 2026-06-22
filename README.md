@@ -1,9 +1,9 @@
 # Distilling BioViL-T for Efficient Chest X-ray Image–Report Retrieval
 
 Official repository for the paper **"Distilling BioViL-T for Efficient Chest
-X-ray Image–Report Retrieval."** We compress the biomedical vision–language model
+X-ray Image Report Retrieval."** We compress the biomedical vision language model
 **BioViL-T** into compact student encoder pairs for chest X-ray ↔ radiology-report
-retrieval, using a two-stage **contrastive + hard-negative** knowledge-distillation
+retrieval, using a two stage **contrastive** knowledge distillation + Hard Negative fine-tuning
 framework. Evaluated on the full **14,018-study MIMIC-CXR test gallery**, the
 DistilBioBERT-paired students substantially exceed the teacher's retrieval recall
 while using roughly an order of magnitude fewer image-encoder parameters and FLOPs.
@@ -16,11 +16,11 @@ while using roughly an order of magnitude fewer image-encoder parameters and FLO
 
 ## Overview
 
-Large biomedical vision–language models such as BioViL-T achieve strong
-cross-modal alignment between chest radiographs and radiology reports, but their
-size makes them impractical to deploy on local or resource-constrained clinical
+Large biomedical vision language models such as BioViL-T achieve strong
+cross modal alignment between chest radiographs and radiology reports, but their
+size makes them impractical to deploy on local or resource constrained clinical
 hardware. We distil a **frozen** BioViL-T teacher into compact student encoder
-pairs that preserve — and on whole-gallery retrieval, exceed — the teacher's
+pairs that preserve, and on whole gallery retrieval, exceed the teacher's
 retrieval ability at a fraction of the cost.
 
 The framework has two stages. **Stage 1 (contrastive distillation)** trains the
@@ -40,20 +40,20 @@ denominator.
 We instantiate **four student pairs** by combining two image encoders
 (MobileViT-Small, RepViT-M1.1) with two text encoders (DistilBioBERT,
 ClinicalDistilBERT), and evaluate them against the BioViL-T teacher and a suite of
-medical and general-domain baselines — all on the identical full test gallery.
+medical and general domain baselines, all on the identical full test gallery.
 
 ---
 
 ## Highlights
 
-- **Students exceed their teacher.** On full-gallery retrieval, the DistilBioBERT
+- **Students exceed their teacher.** On full gallery retrieval, the DistilBioBERT
   students reach up to **~3.7× the teacher's R@1**, despite using far smaller
   image encoders (5.3M / 8.0M vs 27.4M parameters).
 - **Text encoder dominates.** Swapping DistilBioBERT for ClinicalDistilBERT drops
   retrieval below the teacher, showing the **text-encoder choice is the primary
   design decision** for this task.
-- **Stage 1 carries the gains.** Hard-negative fine-tuning yields only minor,
-  architecture-dependent changes; contrastive distillation is the main driver.
+- **Stage 1 carries the gains.** Hard negative fine-tuning yields only minor,
+  architecture dependent changes; contrastive distillation is the main driver.
 - **Fair evaluation.** All models — students, teacher, and baselines — are scored
   on the **identical 14,018-study gallery**, since retrieval recall depends
   strongly on gallery size.
@@ -72,7 +72,9 @@ result per column in **bold** (S1 = Stage 1 contrastive, S2 = Stage 2 hard-negat
 | MobileViT + DistilBioBERT | S2 | 0.0399 | 0.1273 | 0.1894 | 0.0372 | 91 |
 | RepViT + DistilBioBERT | S1 | 0.0270 | 0.0937 | 0.1495 | 0.0276 | 129 |
 | RepViT + DistilBioBERT | S2 | 0.0273 | 0.0989 | 0.1515 | 0.0263 | 122 |
+| MobileViT + ClinicalDistilBERT | S1 | 0.0072 | 0.0267 | 0.0453 | 0.0054 | 634 |
 | MobileViT + ClinicalDistilBERT | S2 | 0.0075 | 0.0275 | 0.0465 | 0.0057 | 620 |
+| RepViT + ClinicalDistilBERT | S1 | 0.0066 | 0.0259 | 0.0417 | 0.0061 | 652 |
 | RepViT + ClinicalDistilBERT | S2 | 0.0069 | 0.0266 | 0.0430 | 0.0064 | 635 |
 
 **Efficiency (single-view, like-for-like with the teacher image encoder):**
@@ -99,7 +101,7 @@ BioViL-T-Retrieval-KD/
 │   ├── paper.pdf
 │   └── architecture.png
 ├── results/                              Metric files backing the paper tables
-│   ├── retrieval_test_metrics.{json,csv} Table I  — retrieval (4 students + teacher)
+│   ├── retrieval_test_metrics.{json,csv} Table I — retrieval (4 students + teacher)
 │   ├── distillation_recovery.csv         Table II — recovery vs teacher
 │   ├── efficiency.csv                    Table III— FLOPs / params / latency
 │   ├── baselines.csv                     Table IV — baseline comparison
@@ -124,14 +126,14 @@ Each major folder contains its own `README.md`.
 space. Teacher embeddings are extracted once offline and cached, so the teacher is
 never run during student training.
 
-**Stage 1 — Contrastive distillation.** For a batch of image–text pairs, a
+**Stage 1: Contrastive distillation.** For a batch of image text pairs, a
 symmetric InfoNCE loss trains the student to rank each matched pair above the
 others in both directions. A feature-imitation term (mean squared error + cosine)
 regresses the student embeddings toward the teacher embeddings, keeping the
 student compatible with the teacher space. The Stage 1 objective is
 InfoNCE + λ·(image KD + text KD).
 
-**Stage 2 — Hard-negative fine-tuning.** Starting from the best Stage 1
+**Stage 2: Hard-negative fine-tuning.** Starting from the best Stage 1
 checkpoint, the student is fine-tuned with the top-K most-similar non-matching
 reports inserted as additional negatives in the InfoNCE denominator, drawn from a
 25,000-sample candidate pool. The feature-imitation regularizer is retained.
